@@ -10,6 +10,8 @@ namespace CustomListDataStructure
     {
         static void Main(string[] args)
         {
+            List<int> myList = new List<int>();
+
         }
     }
 }
