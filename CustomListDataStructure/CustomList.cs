@@ -20,11 +20,11 @@ namespace CustomListDataStructure
         }
         public int Count
         {
-            get { return count; } 
+            get => count;
         }
         public int Capacity
-        { 
-            get { return capacity; }
+        {
+            get => capacity;
         }
 
         public void Add(T item)
@@ -56,9 +56,18 @@ namespace CustomListDataStructure
         }
         public T this[int i]
         {
-            get { return items[i]; }
+            get 
+            {
+                if (i > count - 1)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    return items[i];
+                }
+            }
             set { items[i] = value; }
         }
-
     }
 }
