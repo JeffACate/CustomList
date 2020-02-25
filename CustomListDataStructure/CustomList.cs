@@ -32,12 +32,12 @@ namespace CustomListDataStructure
             if (count <= capacity-1)
             {
                 items[count] = item;
-                count++;
             }
             else
             {
                 IncreaseCapacity(item);
             }
+            count++;
         }
         private void IncreaseCapacity(T item)
         {
@@ -62,10 +62,7 @@ namespace CustomListDataStructure
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                else
-                {
-                    return items[i];
-                }
+                else { return items[i]; }
             }
             set { items[i] = value; }
         }

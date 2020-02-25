@@ -10,8 +10,7 @@ namespace CustomListDataStructure
     {
         static void Main(string[] args)
         {
-            CustomList<int> customList = new CustomList<int>();
-            Console.WriteLine(customList[2]);
+            
         }
     }
 }

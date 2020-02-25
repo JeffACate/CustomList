@@ -93,7 +93,7 @@ namespace CustomListDataStructureTests
         public void Add_ItemAddedWhenCapacityIncreased()
         {
             CustomList<int> myList = new CustomList<int>();
-            int expected = 14;
+            int expected = 15;
             int actual;
 
             //ACT
@@ -104,7 +104,8 @@ namespace CustomListDataStructureTests
 
             // CAPACITY SHOULD DOUBLE
             myList.Add(14);
-            actual = myList[4];
+            myList.Add(15);
+            actual = myList[5];
 
             //ASSERT
             Assert.AreEqual(expected, actual);
@@ -128,6 +129,13 @@ namespace CustomListDataStructureTests
 
             //ASSERT
             Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Add_OutOfRangeException()
+        {
+            CustomList<int> customList = new CustomList<int>();
+            Console.WriteLine(customList[2]);
         }
     }
 }
