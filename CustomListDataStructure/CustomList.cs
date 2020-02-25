@@ -29,30 +29,75 @@ namespace CustomListDataStructure
 
         public void Add(T item)
         {
-            if (count <= capacity-1)
+            if (count == capacity)
             {
-                items[count] = item;
+                IncreaseCapacity();
             }
-            else
-            {
-                IncreaseCapacity(item);
-            }
+            items[count] = item;
             count++;
         }
-        private void IncreaseCapacity(T item)
+        public bool Remove(T item)
         {
-            T[] temperary = new T[capacity*2];
-            for (int i = 0; i <= capacity-1; i++)
+            bool itemInList = Contains(item);
+            if (!itemInList)
             {
-                temperary[i] = items[i];
+                return false;
             }
-            items = new T[capacity*2];
-            for (int i = 0; i <= capacity-1; i++)
+
+            int indexToAdd = 0;
+            T[] newArray = new T[capacity];
+            bool itemRemoved = false;
+            for (int i = 0; i <= count - 1; i++)
             {
-                items[i] = temperary[i];
+                if(!items[i].Equals(item) && itemRemoved == false)
+                {
+                    newArray[indexToAdd] = items[i];
+                    indexToAdd++;
+                }
+                else if (items[i].Equals(item) &&  itemRemoved == false)
+                {
+                    itemRemoved = true;
+                }
+                else
+                {
+                    newArray[indexToAdd] = items[i];
+                    indexToAdd++;
+                }
+
             }
-            capacity *= 2;
-            items[count] = item;
+            items = newArray;
+            count--;
+            return itemRemoved;
+        }
+        public bool Contains(T item)
+        {
+            for (int i = 0; i < count - 1; i++)
+            {
+                if (items[i].Equals(item)) 
+                { 
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void IncreaseCapacity()
+        {
+            int newCapacity = capacity * 2;
+            T[] temperaryItems;
+            temperaryItems = TransferItems(items, newCapacity, capacity); // TO A NEW LIST TEMPERARILY
+            items = new T[newCapacity];
+            items = TransferItems(temperaryItems, newCapacity, capacity);
+            capacity = newCapacity;
+        }
+        private T[] TransferItems(T[] oldArray, int newCapacity, int length)
+        {
+            T[] newArray = new T[newCapacity];
+            for (int i = 0; i <= length - 1; i++)
+            {
+                newArray[i] = oldArray[i];
+            }
+            return newArray;
         }
         public T this[int i]
         {
