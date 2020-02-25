@@ -42,14 +42,14 @@ namespace CustomListDataStructureTests
             CustomList<int> myList = new CustomList<int>();
             int numberToCount = 10;
             int expected = 10;
-            int actual = myList[3];
+            int actual;
             
             //ACT
             myList.Add(15);
             myList.Add(14);
             myList.Add(13);
             myList.Add(numberToCount);
-
+            actual = myList[3];
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
@@ -58,14 +58,14 @@ namespace CustomListDataStructureTests
         {
             CustomList<int> myList = new CustomList<int>();
             int expected = 10;
-            int actual = myList[0];
+            int actual;
 
             //ACT
             myList.Add(10);
             myList.Add(11);
             myList.Add(12);
             myList.Add(13);
-
+            actual = myList[0];
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
@@ -73,17 +73,18 @@ namespace CustomListDataStructureTests
         public void Add_DoubleCapacity()
         {
             CustomList<int> myList = new CustomList<int>();
-            int initialCapacity = myList.Capacity;
-            int expected = initialCapacity * 2;
-            int actual = myList.Capacity;
+            int expected = myList.Capacity * 2;
+            int actual;
             
             //ACT
             myList.Add(10);
             myList.Add(11);
             myList.Add(12);
             myList.Add(13);
+
             // CAPACITY SHOULD DOUBLE
             myList.Add(14);
+            actual = myList.Capacity;
 
             //ASSERT
             Assert.AreEqual(expected, actual);
