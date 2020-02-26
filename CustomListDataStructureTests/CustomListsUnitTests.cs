@@ -48,7 +48,7 @@ namespace CustomListDataStructureTests
             int numberToCount = 10;
             int expected = 10;
             int actual;
-            
+
             //ACT
             myList.Add(15);
             myList.Add(14);
@@ -82,7 +82,7 @@ namespace CustomListDataStructureTests
             CustomList<int> myList = new CustomList<int>();
             int expected = myList.Capacity * 2;
             int actual;
-            
+
             //ACT
             myList.Add(10);
             myList.Add(11);
@@ -609,9 +609,9 @@ namespace CustomListDataStructureTests
         {
             //ARRANGE
             CustomList<float> myList1 = new CustomList<float>();
-            float firstNumber = 1f;
-            float secondNumber = 3f;
-            float thirdNumber = 5f;
+            float firstNumber = 1.0f;
+            float secondNumber = 3.0f;
+            float thirdNumber = 5.0f;
             myList1.Add(firstNumber);
             myList1.Add(secondNumber);
             myList1.Add(thirdNumber);
@@ -671,7 +671,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
-        
+
         [TestMethod]
         public void PlusOperatorOverload_CountAccurate()
         {
@@ -733,6 +733,314 @@ namespace CustomListDataStructureTests
             //ACT
             newList = myList1 + myList2;
             actual = newList[3];
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        /*
+         *  TESTS FOR ~ OPERATOR- OVERLOAD ~ METHOD
+         */
+
+        [TestMethod]
+        public void MinusOperatorOverload_IntSubtractedProperly()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<int> listToSubtract = new CustomList<int>();
+            listToSubtract.Add(1);
+            listToSubtract.Add(6);
+
+            string expected = "3 5 2 4";
+            string actual;
+            CustomList<int> newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinusOperatorOverload_DoubleSubtractedProperly()
+        {
+            //ARRANGE
+            CustomList<double> myList1 = new CustomList<double>();
+            double firstNumber = 1;
+            double secondNumber = 3;
+            double thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<double> myList2 = new CustomList<double>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<double> listToSubtract = new CustomList<double>();
+            listToSubtract.Add(3);
+            listToSubtract.Add(4);
+
+            string expected = "1 5 2 6";
+            string actual;
+            CustomList<double> newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinusOperatorOverload_FloatSubtractedProperly()
+        {
+            //ARRANGE
+            CustomList<float> myList1 = new CustomList<float>();
+            float firstNumber = 1.0f;
+            float secondNumber = 3.0f;
+            float thirdNumber = 5.0f;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<float> myList2 = new CustomList<float>();
+            firstNumber = 2.0f;
+            secondNumber = 4.0f;
+            thirdNumber = 6.0f;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<float> listToSubtract = new CustomList<float>();
+            listToSubtract.Add(3.0f);
+            listToSubtract.Add(4.0f);
+
+            string expected = "1 5 2 6";
+            string actual;
+            CustomList<float> newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinusOperatorOverload_DecimalSubtractedProperly()
+        {
+            //ARRANGE
+            CustomList<decimal> myList1 = new CustomList<decimal>();
+            decimal firstNumber = 0.001m;
+            decimal secondNumber = 0.003m;
+            decimal thirdNumber = 0.005m;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<decimal> myList2 = new CustomList<decimal>();
+            firstNumber = 0.002m;
+            secondNumber = 0.004m;
+            thirdNumber = 0.006m;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<decimal> listToSubtract = new CustomList<decimal>();
+            listToSubtract.Add(0.003m);
+            listToSubtract.Add(0.004m);
+
+            string expected = "0.001 0.005 0.002 0.006";
+            string actual;
+            CustomList<decimal> newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinusOperatorOverload_StringSubtractedProperly()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+            
+            CustomList<string> listToSubtract = new CustomList<string>();
+            listToSubtract.Add("word1");
+            listToSubtract.Add("word6");
+
+            CustomList<string> newList;
+
+            string expected = "word3 word5 word2 word4";
+            string actual;
+            newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinusOperatorOverload_CountDecreasedAppropriately()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> listToSubtract = new CustomList<string>();
+            listToSubtract.Add("word1");
+            listToSubtract.Add("word6");
+
+            CustomList<string> newList = new CustomList<string>();
+
+            int expected = 4;
+            int actual;
+            newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.Count;
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MinusOperatorOverload_ValueNotInList_CountDecreasedAppropriately()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> listToSubtract = new CustomList<string>();
+            listToSubtract.Add("word1");
+            listToSubtract.Add("word16");
+            listToSubtract.Add("word6");
+
+            CustomList<string> newList = new CustomList<string>();
+
+            int expected = 4;
+            int actual;
+            newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.Count;
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MinusOperatorOverload_ValueNotInList_ValueNotInListSkipped()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> listToSubtract = new CustomList<string>();
+            listToSubtract.Add("word1");
+            listToSubtract.Add("word16");
+            listToSubtract.Add("word6");
+
+            CustomList<string> newList = new CustomList<string>();
+
+            string expected = "word3 word5 word2 word4";
+            string actual;
+            newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            actual = newList.ToString();
 
             //ASSERT
             Assert.AreEqual(expected, actual);

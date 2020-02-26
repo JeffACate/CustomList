@@ -45,9 +45,9 @@ namespace CustomListDataStructure
             }
 
             int indexToAdd = 0;
-            T[] newArray = new T[count - 1];
+            T[] newArray = new T[count];
             bool itemRemoved = false;
-            for (int i = 0; i <= count - 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 //if(!items[i].Equals(item) && itemRemoved == false)
                 //{
@@ -55,7 +55,7 @@ namespace CustomListDataStructure
                 //    indexToAdd++;
                 //}
                 /*else*/
-                if (items[i].Equals(item) &&  itemRemoved == false)
+                if (items[i].Equals(item) && itemRemoved== false)
                 {
                     itemRemoved = true;
                 }
@@ -65,13 +65,13 @@ namespace CustomListDataStructure
                     indexToAdd++;
                 }
             }
-            items = newArray;
             count--;
+            items = newArray;
             return itemRemoved;
         }
         public bool Contains(T item)
         {
-            for (int i = 0; i < count - 1; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (items[i].Equals(item)) 
                 { 
@@ -83,7 +83,8 @@ namespace CustomListDataStructure
         public override string ToString()
         {
             string sentence = "";
-            for (int i = 0; i < count; i++)
+            for (int i = 0; 
+                i < count; i++)
             {
                 if (i > 0)
                 {
@@ -109,6 +110,15 @@ namespace CustomListDataStructure
                 combinedList.Add(secondList[i]);
             }
             return combinedList;
+        }
+
+        public static CustomList<T> operator- (CustomList<T> firstList, CustomList<T> secondList)
+        {
+            for (int i = 0; i < secondList.Count; i++)
+            {
+                firstList.Remove(secondList[i]);
+            }
+            return firstList;
         }
         private void IncreaseCapacity()
         {
