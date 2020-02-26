@@ -96,6 +96,20 @@ namespace CustomListDataStructure
             }
             return sentence;
         }
+
+        public static CustomList<T> operator+ (CustomList<T> firstList, CustomList<T> secondList)
+        {
+            CustomList<T> combinedList = new CustomList<T>();
+            for (int i = 0; i < firstList.Count; i++)
+            {
+                combinedList.Add(firstList[i]);
+            }
+            for (int i = 0; i < secondList.Count; i++)
+            {
+                combinedList.Add(secondList[i]);
+            }
+            return combinedList;
+        }
         private void IncreaseCapacity()
         {
             int newCapacity = capacity * 2;

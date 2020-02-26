@@ -502,5 +502,240 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+        /*
+         *  TESTS FOR ~ OPERATOR+ OVERLOAD ~ METHOD
+         */
+
+        [TestMethod]
+        public void PlusOperatorOverload_IntAddedProperly()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            string expected = "1 3 5 2 4 6";
+            string actual;
+            CustomList<int> newList;
+
+            //ACT
+            newList = myList1 + myList2;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void PlusOperatorOverload_DoubleAddedProperly()
+        {
+            //ARRANGE
+            CustomList<double> myList1 = new CustomList<double>();
+            double firstNumber = 11;
+            double secondNumber = 13;
+            double thirdNumber = 15;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<double> myList2 = new CustomList<double>();
+            firstNumber = 12;
+            secondNumber = 14;
+            thirdNumber = 16;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<double> newList = new CustomList<double>();
+
+            string expected = "11 13 15 12 14 16";
+            string actual;
+
+            //ACT
+            newList = myList1 + myList2;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void PlusOperatorOverload_DecimalAddedProperly()
+        {
+            //ARRANGE
+            CustomList<decimal> myList1 = new CustomList<decimal>();
+            decimal firstNumber = .001m;
+            decimal secondNumber = .003m;
+            decimal thirdNumber = .005m;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<decimal> myList2 = new CustomList<decimal>();
+            firstNumber = .002m;
+            secondNumber = .004m;
+            thirdNumber = .006m;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<decimal> newList = new CustomList<decimal>();
+
+            string expected = "0.001 0.003 0.005 0.002 0.004 0.006";
+            string actual;
+
+            //ACT
+            newList = myList1 + myList2;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void PlusOperatorOverload_FloatAddedProperly()
+        {
+            //ARRANGE
+            CustomList<float> myList1 = new CustomList<float>();
+            float firstNumber = 1f;
+            float secondNumber = 3f;
+            float thirdNumber = 5f;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<float> myList2 = new CustomList<float>();
+            firstNumber = 2.0f;
+            secondNumber = 4.0f;
+            thirdNumber = 6.0f;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<float> newList = new CustomList<float>();
+
+            string expected = "1 3 5 2 4 6";
+            string actual;
+
+            //ACT
+            newList = myList1 + myList2;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void PlusOperatorOverload_StringAddedProperly()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> newList = new CustomList<string>();
+
+            string expected = "word1 word3 word5 word2 word4 word6";
+            string actual;
+
+            //ACT
+            newList = myList1 + myList2;
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        
+        [TestMethod]
+        public void PlusOperatorOverload_CountAccurate()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> newList = new CustomList<string>();
+            int expected = 6;
+
+            //ACT
+            newList = myList1 + myList2;
+            int actual = newList.Count;
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void PlusOperatorOverload_SecondListAddedToFirstList()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            CustomList<int> newList = new CustomList<int>();
+
+            int expected = 2;
+            int actual;
+
+            //ACT
+            newList = myList1 + myList2;
+            actual = newList[3];
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

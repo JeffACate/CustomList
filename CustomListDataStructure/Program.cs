@@ -10,16 +10,27 @@ namespace CustomListDataStructure
     {
         static void Main(string[] args)
         {
-            CustomList<double> myList = new CustomList<double>();
-            double firstNumber = 11.5;
-            double secondNumber = 12.5;
-            double thirdNumber = 13.5;
-            myList.Add(firstNumber);
-            myList.Add(secondNumber);
-            myList.Add(thirdNumber);
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "word1";
+            string secondWord = "word3";
+            string thirdWord = "word5";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
 
-            Console.WriteLine(myList.ToString());
-            Console.ReadKey();
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "word2";
+            secondWord = "word4";
+            thirdWord = "word6";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> newList = new CustomList<string>();
+
+            //ACT
+            newList = myList1 + myList2;
         }
     }
 }
