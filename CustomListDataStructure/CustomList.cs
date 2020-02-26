@@ -80,10 +80,22 @@ namespace CustomListDataStructure
             }
             return false;
         }
-
-        
-
-
+        public override string ToString()
+        {
+            string sentence = "";
+            for (int i = 0; i < count; i++)
+            {
+                if (i > 0)
+                {
+                    sentence += " " + items[i];
+                }
+                else if (i == 0)
+                {
+                    sentence += items[i];
+                }
+            }
+            return sentence;
+        }
         private void IncreaseCapacity()
         {
             int newCapacity = capacity * 2;
