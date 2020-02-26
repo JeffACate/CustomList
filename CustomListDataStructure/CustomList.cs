@@ -45,16 +45,17 @@ namespace CustomListDataStructure
             }
 
             int indexToAdd = 0;
-            T[] newArray = new T[capacity];
+            T[] newArray = new T[count - 1];
             bool itemRemoved = false;
             for (int i = 0; i <= count - 1; i++)
             {
-                if(!items[i].Equals(item) && itemRemoved == false)
-                {
-                    newArray[indexToAdd] = items[i];
-                    indexToAdd++;
-                }
-                else if (items[i].Equals(item) &&  itemRemoved == false)
+                //if(!items[i].Equals(item) && itemRemoved == false)
+                //{
+                //    newArray[indexToAdd] = items[i];
+                //    indexToAdd++;
+                //}
+                /*else*/
+                if (items[i].Equals(item) &&  itemRemoved == false)
                 {
                     itemRemoved = true;
                 }
@@ -63,7 +64,6 @@ namespace CustomListDataStructure
                     newArray[indexToAdd] = items[i];
                     indexToAdd++;
                 }
-
             }
             items = newArray;
             count--;
@@ -80,6 +80,9 @@ namespace CustomListDataStructure
             }
             return false;
         }
+
+        
+
 
         private void IncreaseCapacity()
         {

@@ -40,6 +40,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Add_ValueAddedToEndOfList()
         {
@@ -57,6 +58,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Add_ValuesInListRemain()
         {
@@ -73,6 +75,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Add_DoubleCapacity()
         {
@@ -93,6 +96,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Add_ItemAddedWhenCapacityIncreased()
         {
@@ -114,6 +118,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Add_ItemsCopiedWhenCapacityIncreased()
         {
@@ -161,6 +166,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_ItemRemoved()
         {
@@ -184,6 +190,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_ItemBeforeRemains()
         {
@@ -231,6 +238,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_OrderRestructured_IndexAfterEqualsIndexRemoved()
         {
@@ -254,6 +262,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_ItemOnlyRemovedOnce_CountDecramentedOnlyOnce()
         {
@@ -279,6 +288,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_ItemOnlyRemovedOnce_SecondInstancePersists()
         {
@@ -304,6 +314,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_BoolReturned_True()
         {
@@ -328,6 +339,7 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void Remove_BoolReturned_False()
         {
@@ -378,15 +390,117 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+        /*
+         *  TESTS FOR ~ TOSTRING ~ METHOD
+         */
 
+        [TestMethod]
+        public void ToString_IntReturnsString()
+        {
+            //ASSERT
+            CustomList<int> myList = new CustomList<int>();
+            int firstNumber = 11;
+            int secondNumber = 12;
+            int thirdNumber = 13;
+            myList.Add(firstNumber);
+            myList.Add(secondNumber);
+            myList.Add(thirdNumber);
 
+            string expected = "11 12 13";
+            string actual;
 
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-        //public void Add_OutOfRangeException()
-        //{
-        //    CustomList<int> customList = new CustomList<int>();
-        //    Console.WriteLine(customList[2]);
-        //}
+            //ACT
+            actual = myList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ToString_StringReturnsString()
+        {
+            //ASSERT
+            CustomList<string> myList = new CustomList<string>();
+            string firstWord = "Hello";
+            string secondWord = "World,";
+            string thirdWord = "Jeff!";
+            myList.Add(firstWord);
+            myList.Add(secondWord);
+            myList.Add(thirdWord);
+
+            string expected = "Hello World, Jeff!";
+            string actual;
+
+            //ACT
+            actual = myList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_DoubleReturnsString()
+        {
+            //ASSERT
+            CustomList<double> myList = new CustomList<double>();
+            double firstNumber = 11.5;
+            double secondNumber = 12.5;
+            double thirdNumber = 13.5;
+            myList.Add(firstNumber);
+            myList.Add(secondNumber);
+            myList.Add(thirdNumber);
+
+            string expected = "11.5 12.5 13.5";
+            string actual;
+
+            //ACT
+            actual = myList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_DecimalReturnsString()
+        {
+            //ASSERT
+            CustomList<decimal> myList = new CustomList<decimal>();
+            decimal firstNumber = 0.123m;
+            decimal secondNumber = 0.456m;
+            decimal thirdNumber = 0.789m;
+            myList.Add(firstNumber);
+            myList.Add(secondNumber);
+            myList.Add(thirdNumber);
+
+            string expected = "0.123 0.456 0.789";
+            string actual;
+
+            //ACT
+            actual = myList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_FloatReturnsString()
+        {
+            //ASSERT
+            CustomList<float> myList = new CustomList<float>();
+            float firstNumber = 11.123f;
+            float secondNumber = 12.456f;
+            float thirdNumber = 13.789f;
+            myList.Add(firstNumber);
+            myList.Add(secondNumber);
+            myList.Add(thirdNumber);
+
+            string expected = "11.123 12.456 13.789";
+            string actual;
+
+            //ACT
+            actual = myList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
