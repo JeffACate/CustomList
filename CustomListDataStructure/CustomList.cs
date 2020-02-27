@@ -21,58 +21,45 @@ namespace CustomListDataStructure
             count = 0;
         }
         // PROPERTIES
-        public int Count
-        {
-            get => count;
-        }
-        public int Capacity
-        {
-            get => capacity;
-        }
+        public int Count { get => count; }
+        public int Capacity { get => capacity; }
         // METHODS
         public void Add(T item)
         {
-            if (count == capacity)
-            {
-                IncreaseCapacity();
-            }
+            if (count == capacity) { IncreaseCapacity(); }
             items[count] = item;
             count++;
         }
         private void IncreaseCapacity()
         {
             int newCapacity = capacity * 2;
-            T[] temperaryItems;
-            temperaryItems = TransferItems(items, newCapacity, capacity); // TO A NEW LIST TEMPERARILY
-            items = new T[newCapacity];
-            items = TransferItems(temperaryItems, newCapacity, capacity);
+            T[] temperaryItems = TransferItems(items, newCapacity); // TO A NEW LIST TEMPERARILY
+            items = TransferItems(temperaryItems, newCapacity);
             capacity = newCapacity;
         }
-        private T[] TransferItems(T[] oldArray, int newCapacity, int length)
+        private T[] TransferItems(T[] fromArray, int newCapacity)
         {
             T[] newArray = new T[newCapacity];
-            for (int i = 0; i <= length - 1; i++)
-            {
-                newArray[i] = oldArray[i];
-            }
+            for (int i = 0; i < capacity ; i++) { newArray[i] = fromArray[i]; }
             return newArray;
         }
-        public bool Remove(T item)
+        public bool Remove(T removedItem)
         {
-            bool itemInList = Contains(item);
+            // IF ITEM NOT IN LIST SKIP
+            bool itemInList = Contains(removedItem);
             if (!itemInList)
             {
                 return false;
             }
-
+            // IF ITEM IN LIST 
             int indexToAdd = 0;
             T[] newArray = new T[count];
-            bool itemRemoved = false;
+            bool itemWasRemoved = false;
             for (int i = 0; i < count; i++)
             {
-                if (items[i].Equals(item) && itemRemoved== false)
+                if (items[i].Equals(removedItem) && itemWasRemoved.Equals(false))
                 {
-                    itemRemoved = true;
+                    itemWasRemoved = true;
                 }
                 else
                 {
@@ -80,18 +67,17 @@ namespace CustomListDataStructure
                     indexToAdd++;
                 }
             }
+
+
             count--;
             items = newArray;
-            return itemRemoved;
+            return itemWasRemoved;
         }
-        public bool Contains(T item)
+        public bool Contains(T itemToCheck)
         {
-            for (int i = 0; i < count; i++)
+            foreach (T item in items)
             {
-                if (items[i].Equals(item)) 
-                { 
-                    return true;
-                }
+                if (itemToCheck.Equals(item)) { return true; }
             }
             return false;
         }
@@ -139,16 +125,9 @@ namespace CustomListDataStructure
 
             for (int i = 0; i < longestListLenght; i++)
             {
-                if (count > i)
-                {
-                    newList.Add(items[i]);
-                }
-                if (i < secondList.Count)
-                {
-                    newList.Add(secondList[i]);
-                }
+                if (i < count) { newList.Add(items[i]); }
+                if (i < secondList.Count) { newList.Add(secondList[i]); }
             }
-
             return newList;
         }
         public IEnumerator GetEnumerator()
