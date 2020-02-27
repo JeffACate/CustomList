@@ -10,12 +10,7 @@ namespace CustomListDataStructure
     {
         static void Main(string[] args)
         {
-
-            List<string> myList1 = new List<string>();
-            List<string> myList2 = new List<string>();
-            List<string> listToSubtract = new List<string>();
-            List<string> newList = new List<string>();
-
+            CustomList<string> myList1 = new CustomList<string>();
             string firstWord = "word1";
             string secondWord = "word3";
             string thirdWord = "word5";
@@ -23,6 +18,8 @@ namespace CustomListDataStructure
             myList1.Add(secondWord);
             myList1.Add(thirdWord);
 
+
+            CustomList<string> myList2 = new CustomList<string>();
             firstWord = "word2";
             secondWord = "word4";
             thirdWord = "word6";
@@ -30,19 +27,21 @@ namespace CustomListDataStructure
             myList2.Add(secondWord);
             myList2.Add(thirdWord);
 
+            CustomList<string> listToSubtract = new CustomList<string>();
             listToSubtract.Add("word1");
+            listToSubtract.Add("word16");
             listToSubtract.Add("word6");
 
-            foreach (string word in myList2)
-            {
-                myList2.Remove(word);
-            }
-            foreach (string letter in myList2)
-            {
-                Console.WriteLine(letter);
-            }
-            Console.WriteLine();
-            Console.ReadLine();
+            CustomList<string> newList = new CustomList<string>();
+
+            int expected = 4;
+            int actual;
+            newList = myList1 + myList2;
+
+            //ACT
+            newList = newList - listToSubtract;
+            Console.ReadKey();
+
         }
     }
 }

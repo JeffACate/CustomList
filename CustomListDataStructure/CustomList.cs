@@ -1,23 +1,26 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomListDataStructure
+namespace CustomListDataStructure 
 {
-   public class CustomList<T>
+   public class CustomList<T> : IEnumerable
     {
         private int capacity;
         private int count;
         private T[] items;
 
+        // CONSTRUCTOR
         public CustomList()
         {
             capacity = 4;
             items = new T[4];
             count = 0;
         }
+        // PROPERTIES
         public int Count
         {
             get => count;
@@ -26,7 +29,7 @@ namespace CustomListDataStructure
         {
             get => capacity;
         }
-
+        // METHODS
         public void Add(T item)
         {
             if (count == capacity)
@@ -35,6 +38,24 @@ namespace CustomListDataStructure
             }
             items[count] = item;
             count++;
+        }
+        private void IncreaseCapacity()
+        {
+            int newCapacity = capacity * 2;
+            T[] temperaryItems;
+            temperaryItems = TransferItems(items, newCapacity, capacity); // TO A NEW LIST TEMPERARILY
+            items = new T[newCapacity];
+            items = TransferItems(temperaryItems, newCapacity, capacity);
+            capacity = newCapacity;
+        }
+        private T[] TransferItems(T[] oldArray, int newCapacity, int length)
+        {
+            T[] newArray = new T[newCapacity];
+            for (int i = 0; i <= length - 1; i++)
+            {
+                newArray[i] = oldArray[i];
+            }
+            return newArray;
         }
         public bool Remove(T item)
         {
@@ -49,12 +70,6 @@ namespace CustomListDataStructure
             bool itemRemoved = false;
             for (int i = 0; i < count; i++)
             {
-                //if(!items[i].Equals(item) && itemRemoved == false)
-                //{
-                //    newArray[indexToAdd] = items[i];
-                //    indexToAdd++;
-                //}
-                /*else*/
                 if (items[i].Equals(item) && itemRemoved== false)
                 {
                     itemRemoved = true;
@@ -83,8 +98,7 @@ namespace CustomListDataStructure
         public override string ToString()
         {
             string sentence = "";
-            for (int i = 0; 
-                i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (i > 0)
                 {
@@ -97,8 +111,7 @@ namespace CustomListDataStructure
             }
             return sentence;
         }
-
-        public static CustomList<T> operator+ (CustomList<T> firstList, CustomList<T> secondList)
+        public static CustomList<T> operator + (CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> combinedList = new CustomList<T>();
             for (int i = 0; i < firstList.Count; i++)
@@ -111,8 +124,7 @@ namespace CustomListDataStructure
             }
             return combinedList;
         }
-
-        public static CustomList<T> operator- (CustomList<T> firstList, CustomList<T> secondList)
+        public static CustomList<T> operator - (CustomList<T> firstList, CustomList<T> secondList)
         {
             for (int i = 0; i < secondList.Count; i++)
             {
@@ -120,29 +132,37 @@ namespace CustomListDataStructure
             }
             return firstList;
         }
-        private void IncreaseCapacity()
+        public CustomList<T> Zip(CustomList<T> secondList)
         {
-            int newCapacity = capacity * 2;
-            T[] temperaryItems;
-            temperaryItems = TransferItems(items, newCapacity, capacity); // TO A NEW LIST TEMPERARILY
-            items = new T[newCapacity];
-            items = TransferItems(temperaryItems, newCapacity, capacity);
-            capacity = newCapacity;
-        }
-        private T[] TransferItems(T[] oldArray, int newCapacity, int length)
-        {
-            T[] newArray = new T[newCapacity];
-            for (int i = 0; i <= length - 1; i++)
+            CustomList<T> newList = new CustomList<T>();
+            int longestListLenght = Math.Max(count, secondList.Count);
+
+            for (int i = 0; i < longestListLenght; i++)
             {
-                newArray[i] = oldArray[i];
+                if (count > i)
+                {
+                    newList.Add(items[i]);
+                }
+                if (i < secondList.Count)
+                {
+                    newList.Add(secondList[i]);
+                }
             }
-            return newArray;
+
+            return newList;
+        }
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                yield return items[i];
+            }
         }
         public T this[int i]
         {
             get 
             {
-                if (i > count - 1)
+                if (i > count)
                 {
                     throw new ArgumentOutOfRangeException();
                 }

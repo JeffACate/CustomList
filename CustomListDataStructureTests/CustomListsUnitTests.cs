@@ -17,10 +17,12 @@ namespace CustomListDataStructureTests
             //ARRANGE
             CustomList<string> myList = new CustomList<string>();
             string wordToAdd = "Hello World";
-            int expected = 1;
+            string secondWordToAdd = "My name is Jeff";
+            int expected = 2;
 
             //ACT
             myList.Add(wordToAdd);
+            myList.Add(secondWordToAdd);
             int actual = myList.Count;
             //ASSERT
             Assert.AreEqual(expected, actual);
@@ -1045,5 +1047,222 @@ namespace CustomListDataStructureTests
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
+        /*
+         *  TESTS FOR ~ ZIP ~ METHOD
+         */
+
+        [TestMethod]
+        public void Zip_Int_Count()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            int expected = 6;
+            int actual;
+            CustomList<int> newList;
+
+            //ACT
+            newList = myList1.Zip(myList2);
+            actual = newList.Count;
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_Int_FullContentCheck()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            string expected = "1 2 3 4 5 6";
+            string actual;
+            CustomList<int> newList;
+
+            //ACT
+            newList = myList1.Zip(myList2);
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Zip_String_FullContentCheck()
+        {
+            //ARRANGE
+            CustomList<string> myList1 = new CustomList<string>();
+            string firstWord = "This";
+            string secondWord = "will";
+            string thirdWord = "goofy";
+            myList1.Add(firstWord);
+            myList1.Add(secondWord);
+            myList1.Add(thirdWord);
+
+
+            CustomList<string> myList2 = new CustomList<string>();
+            firstWord = "sentence";
+            secondWord = "look";
+            thirdWord = "now";
+            myList2.Add(firstWord);
+            myList2.Add(secondWord);
+            myList2.Add(thirdWord);
+
+            CustomList<string> newList = new CustomList<string>();
+
+            string expected = "This sentence will look goofy now";
+            string actual;
+
+            //ACT
+            newList = myList1.Zip(myList2);
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Zip_Int_FirstListLonger_FullContentCheck()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            int forthNumber = 7;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+            myList1.Add(forthNumber);
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+
+            string expected = "1 2 3 4 5 6 7";
+            string actual;
+            CustomList<int> newList;
+
+            //ACT
+            newList = myList1.Zip(myList2);
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Zip_Int_SecondListLonger_FullContentCheck()
+        {
+            //ARRANGE
+            CustomList<int> myList1 = new CustomList<int>();
+            int firstNumber = 1;
+            int secondNumber = 3;
+            int thirdNumber = 5;
+            myList1.Add(firstNumber);
+            myList1.Add(secondNumber);
+            myList1.Add(thirdNumber);
+
+
+            CustomList<int> myList2 = new CustomList<int>();
+            firstNumber = 2;
+            secondNumber = 4;
+            thirdNumber = 6;
+            int forthNumber = 8;
+
+            myList2.Add(firstNumber);
+            myList2.Add(secondNumber);
+            myList2.Add(thirdNumber);
+            myList2.Add(forthNumber);
+
+            string expected = "1 2 3 4 5 6 8";
+            string actual;
+            CustomList<int> newList;
+
+            //ACT
+            newList = myList1.Zip(myList2);
+            actual = newList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        /*
+         *  TESTS FOR ~ IEnumerable/Iterable ~ METHOD
+         */
+        [TestMethod]
+        public void IterablilityTest_InstantiateListWithMultipleItems()
+        {
+            //ARRANGE
+            string expected = "1 2 3";
+
+            //ACT
+            CustomList<int> customList = new CustomList<int>() {1,2,3};
+            string actual = customList.ToString();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void IterablilityTest_InstantiateListWithMultipleItems_CountIncreased()
+        {
+            //ARRANGE
+            int expected = 3;
+            
+            //ACT
+            CustomList<int> customList = new CustomList<int>() { 1, 2, 3 };
+            int actual = customList.Count;
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            //ARRANGE
+            int expected = 6;
+            int actual = 1;
+            //ACT
+            CustomList<int> customList = new CustomList<int>() { 1, 2, 3 };
+            foreach (int num in customList)
+            {
+                actual *= num;
+            }
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
     }
 }
