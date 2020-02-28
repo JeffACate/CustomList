@@ -17,7 +17,8 @@ namespace CustomListDataStructure
             myList1.Add(firstWord);
             myList1.Add(secondWord);
             myList1.Add(thirdWord);
-
+            // MUST THROW ARG OUT OF RANGE NOT INDEX OUT OF RANGE CODER AXESSING MY LIST
+            //string boy = myList1[-1];
 
             CustomList<string> myList2 = new CustomList<string>();
             firstWord = "word2";

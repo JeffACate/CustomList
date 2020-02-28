@@ -132,22 +132,17 @@ namespace CustomListDataStructure
         }
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i < Count; i++)
-            {
-                yield return items[i];
-            }
+            for (int i = 0; i < Count; i++) { yield return items[i]; }
         }
         public T this[int i]
         {
             get 
             {
-                if (i > count)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+                if (i > count) { throw new ArgumentOutOfRangeException(); }
                 else { return items[i]; }
             }
             set { items[i] = value; }
         }
+        public void Sort(T[] array) { }
     }
 }
