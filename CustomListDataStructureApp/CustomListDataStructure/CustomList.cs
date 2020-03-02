@@ -67,8 +67,6 @@ namespace CustomListDataStructure
                     indexToAdd++;
                 }
             }
-
-
             count--;
             items = newArray;
             return itemWasRemoved;
